@@ -1,0 +1,14 @@
+package lessonPackage.services.interfaces;
+
+import lessonPackage.data.Lesson;
+import lessonPackage.data.ShoppingCart;
+import lessonPackage.data.Trainer;
+
+import java.util.List;
+
+public interface ShoppingCartService {
+
+    List<ShoppingCart> getAllShoppingCarts();
+    void addShoppingCart(ShoppingCart shoppingCart);
+    ShoppingCart getOneShoppingCart(int id);
+}

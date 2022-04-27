@@ -9,14 +9,25 @@ public class ShoppingCart{
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Integer id;
-    @ManyToMany
-    private List<Lesson> lessons;
+    @OneToOne
+    private Lesson lesson;
+    @OneToOne
+    private User user;
 
     public ShoppingCart() {
     }
 
-    public ShoppingCart(List<Lesson> lessons) {
-        this.lessons = lessons;
+    public ShoppingCart(Lesson lesson, User user) {
+        this.lesson = lesson;
+        this.user = user;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public Integer getId() {
@@ -28,11 +39,11 @@ public class ShoppingCart{
     }
 
 
-    public List<Lesson> getLessons() {
-        return lessons;
+    public Lesson getLesson() {
+        return lesson;
     }
 
-    public void setLessons(List<Lesson> lessons) {
-        this.lessons = lessons;
+    public void setLesson(Lesson lesson) {
+        this.lesson = lesson;
     }
 }

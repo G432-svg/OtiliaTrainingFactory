@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <name>TrainingFactory</name>
+</head>
+<body>
+
+
+<h1 th:text="'Hello '+ ${session.currentUser}" th:unless = "${session==null}"></h1>
+
+<div th:each=lesson:${lessons}>
+    <p th:text=${lesson.name}> </p>
+    <p th:text=${lesson.trainer}> </p>
+    <img th:src=@{/images/{lessonimage}(lessonimage=${lesson.imageLocation})}>
+</div>
+
+</body>
+</html>

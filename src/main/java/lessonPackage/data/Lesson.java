@@ -1,9 +1,6 @@
 package lessonPackage.data;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 import java.util.List;
 
 @Entity
@@ -12,23 +9,35 @@ public class Lesson {
     @GeneratedValue
     private Integer id;
     private String name;
-    private String trainerId;
     @OneToMany(mappedBy = "lesson")
     private List<Comment> comments;
     private String imageLocation;
     private double price;
-
+    @OneToOne(mappedBy = "lesson")
+    private User user;
+    @ManyToOne
+    private Trainer trainer;
+    @OneToOne(mappedBy = "lesson")
+    private ShoppingCart shoppingCart;
 
     public Lesson() {
+
     }
 
-    public Lesson(Integer id, String name, String trainerId, List<Comment> comments, String imageLocation, double price) {
-        this.id = id;
+    public Lesson(String name, String imageLocation, double price) {
         this.name = name;
-        this.trainerId = trainerId;
+        this.imageLocation = imageLocation;
+        this.price = price;
+    }
+
+    public Lesson(String name, List<Comment> comments, String imageLocation, double price, User user, Trainer trainer, ShoppingCart shoppingCart) {
+        this.name = name;
         this.comments = comments;
         this.imageLocation = imageLocation;
         this.price = price;
+        this.user = user;
+        this.trainer = trainer;
+        this.shoppingCart = shoppingCart;
     }
 
     public Integer getId() {
@@ -47,13 +56,18 @@ public class Lesson {
         this.name = name;
     }
 
-    public String getTrainerId() {
-        return trainerId;
+    public User getUser() {
+        return user;
     }
 
-    public void setTrainerId(String trainerId) {
-        this.trainerId = trainerId;
+    public void setUser(User user) {
+        this.user = user;
     }
+
+    public void setTrainer(Trainer trainer) {
+        this.trainer = trainer;
+    }
+
 
     public List<Comment> getComments() {
         return comments;
@@ -77,5 +91,17 @@ public class Lesson {
 
     public void setPrice(double price) {
         this.price = price;
+    }
+
+    public Trainer getTrainer() {
+        return trainer;
+    }
+
+    public ShoppingCart getShoppingCart() {
+        return shoppingCart;
+    }
+
+    public void setShoppingCart(ShoppingCart shoppingCart) {
+        this.shoppingCart = shoppingCart;
     }
 }

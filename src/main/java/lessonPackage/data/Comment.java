@@ -5,7 +5,6 @@ import java.sql.Date;
 
 @Entity
 public class Comment {
-
     @Id
     @GeneratedValue
     private Integer id;
@@ -13,15 +12,14 @@ public class Comment {
     private Lesson lesson;
     private String words;
     private Date dayOfComment;
-    @ManyToOne
+    @OneToOne
     private User user;
 
 
     public Comment() {
     }
 
-    public Comment(Integer id, Lesson lesson, String words, Date dayOfComment, User user) {
-        this.id = id;
+    public Comment(Lesson lesson, String words, Date dayOfComment, User user) {
         this.lesson = lesson;
         this.words = words;
         this.dayOfComment = dayOfComment;
